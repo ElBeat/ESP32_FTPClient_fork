@@ -130,6 +130,13 @@ void ESP32_FTPClient::Write(const char * str) {
   GetDataClient()->print(str);
 }
 
+void CheckConnection(){
+  char* result;
+  FTPdbgn("Send NOOP");
+  client.println(F("NOOP"));
+  GetFTPAnswer (result, 4);
+  }
+
 void ESP32_FTPClient::CloseConnection() {
   client.println(F("QUIT"));
   client.stop();
