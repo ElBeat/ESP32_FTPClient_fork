@@ -56,4 +56,5 @@ class ESP32_FTPClient
   void DownloadString(const char * filename, String &str);
   void DownloadFile(const char * filename, unsigned char * buf, size_t length, bool printUART = false);
   void CheckConnection();
+  void GetFileDetails(const char * filename, unsigned char * buf, size_t length);
 };
