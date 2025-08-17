@@ -369,13 +369,14 @@ void ESP32_FTPClient::DownloadFile(const char * filename, unsigned char * buf, s
   }
 }
 
-void GetFileDetails(const char * filename, unsigned char * buf, size_t length){
+void ESP32_FTPClient::GetFileDetails(const char *filename, unsigned char *buf, size_t length)
+{
   FTPdbgn("Send MLST");
-  if(!isConnected()) return;
+  if (!isConnected())
+    return;
   client.print(F("MLST "));
   client.println(F(filename));
-  
-  char _resp[ sizeof(outBuf) ];    
-  GetFTPAnswer(_resp);
 
+  GetFTPAnswer();
+  memcpy(buf, outBuf, length);
 }
